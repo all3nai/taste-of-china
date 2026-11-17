@@ -1,0 +1,326 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="theme-color" content="#090909">
+<title>The Taste of China — 中国味道</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600;700&family=DM+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+<style>
+:root{--bg:#090909;--panel:#151515;--red:#b51f2b;--wine:#65151c;--gold:#c5a46d;--ivory:#f5efe5;--muted:#a5a09a;--line:rgba(197,164,109,.22);--serif:'Cormorant Garamond',Georgia,serif;--sans:'DM Sans',Arial,sans-serif}
+*{box-sizing:border-box}html{scroll-behavior:smooth;scroll-padding-top:72px;overflow-x:hidden}body{margin:0;overflow-x:hidden;background:var(--bg);color:var(--ivory);font-family:var(--sans);font-weight:300}button,input{font:inherit}button{cursor:pointer}.grain:before{content:"";position:fixed;inset:0;pointer-events:none;z-index:20;opacity:.045;background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 180 180' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='.4'/%3E%3C/svg%3E")}
+a{color:inherit;text-decoration:none}.nav{height:78px;padding:0 6vw;display:flex;align-items:center;justify-content:space-between;position:absolute;top:0;left:0;right:0;z-index:30;border-bottom:1px solid rgba(255,255,255,.09)}.brand{font-size:12px;letter-spacing:.22em;font-weight:600}.brand span{display:block;color:var(--gold);font-family:var(--serif);font-size:12px;letter-spacing:.3em;margin-top:4px}.navlinks{display:flex;gap:34px;font-size:11px;letter-spacing:.15em;text-transform:uppercase;color:#ddd}.navlinks a{transition:color .25s}.navlinks a:hover{color:var(--gold)}.menu{display:none;background:none;border:1px solid var(--line);color:var(--ivory);padding:9px 12px}
+.hero{min-height:100svh;position:relative;display:flex;align-items:flex-end;padding:0 9vw 10vh;overflow:hidden;background:linear-gradient(90deg,rgba(0,0,0,.82),rgba(0,0,0,.24) 65%,rgba(0,0,0,.38)),linear-gradient(0deg,#090909 0%,transparent 48%),url('https://images.unsplash.com/photo-1555126634-323283e090fa?auto=format&fit=crop&w=2200&q=88') center/cover}
+.hero:after{content:"";position:absolute;inset:0;background:radial-gradient(ellipse at 75% 30%,rgba(181,31,43,.2),transparent 42%);pointer-events:none}.hero-content{position:relative;z-index:2;max-width:850px;animation:rise 1.2s ease both}.eyebrow{font-size:10px;letter-spacing:.32em;text-transform:uppercase;color:var(--gold);display:flex;align-items:center;gap:14px}.eyebrow:before{content:"";width:34px;height:1px;background:var(--gold)}h1,h2,h3{font-family:var(--serif);font-weight:400}h1{font-size:clamp(56px,8vw,118px);line-height:.88;letter-spacing:-.045em;margin:28px 0 18px;max-width:900px}h1 em{font-style:normal;color:var(--gold)}.hanzi{font-family:var(--serif);font-size:24px;letter-spacing:.3em;color:#e8d7bd}.hero p{max-width:510px;color:#c4bdb4;line-height:1.8;font-size:14px;margin:24px 0 34px}.cta{border:1px solid var(--gold);background:var(--red);color:white;padding:16px 25px;font-size:10px;letter-spacing:.2em;text-transform:uppercase;transition:.3s;box-shadow:0 10px 40px #b51f2b33}.cta:hover{background:#d02a37;transform:translateY(-3px);box-shadow:0 16px 50px #b51f2b55}.scroll-note{position:absolute;right:6vw;bottom:10vh;z-index:2;color:#aaa;font-size:9px;letter-spacing:.25em;writing-mode:vertical-rl}.scroll-note:after{content:"";display:inline-block;width:1px;height:55px;background:var(--gold);margin-top:16px}
+section{padding:115px 8vw}.section-head{display:flex;justify-content:space-between;align-items:end;gap:30px;margin-bottom:48px}.section-head h2{font-size:clamp(42px,5vw,70px);line-height:.95;margin:15px 0 0}.section-head p{max-width:360px;color:var(--muted);font-size:13px;line-height:1.8;margin:0}.map-section{background:radial-gradient(ellipse at 50% 48%,#271013 0%,#111 48%,#090909 78%);padding-top:105px}.map-shell{border:1px solid var(--line);background:linear-gradient(145deg,#111 0%,#0b0b0b 100%);min-height:570px;position:relative;overflow:hidden;display:grid;grid-template-columns:1fr 310px}.map-area{position:relative;min-height:570px;overflow:hidden}.map-area:before{content:"";position:absolute;inset:0;background-image:linear-gradient(rgba(197,164,109,.045) 1px,transparent 1px),linear-gradient(90deg,rgba(197,164,109,.045) 1px,transparent 1px);background-size:48px 48px;mask-image:linear-gradient(90deg,black,transparent)}#chinaMap{width:100%;height:100%;min-height:570px;display:block}.province{fill:#241719;stroke:#8f6e52;stroke-width:.65;transition:fill .25s,filter .25s;cursor:pointer}.province:hover,.province.active{fill:#68212a;filter:drop-shadow(0 0 7px #b51f2b99)}.map-pin{cursor:pointer;outline:none}.map-pin:focus circle.core{r:8;fill:#fff}.map-pin.active circle.core{fill:#fff;filter:drop-shadow(0 0 8px #e7b87c)}.map-pin circle.pulse{fill:none;stroke:#d23a43;stroke-width:1;opacity:.6;animation:pulse 2.2s infinite}.map-pin circle.pulse{fill:none;stroke:#d23a43;stroke-width:1;opacity:.6;animation:pulse 2.2s infinite}.map-pin circle.core{fill:#e7b87c;stroke:#fff0d4;stroke-width:1}.map-pin text{fill:#f5efe5;font:11px var(--sans);letter-spacing:.08em;paint-order:stroke;stroke:#090909;stroke-width:3px;stroke-linejoin:round}.map-pin:hover circle.core{r:7;fill:#fff}.map-tools{position:absolute;top:22px;left:24px;display:flex;gap:8px}.map-tools button,.backmap{border:1px solid var(--line);background:#101010dd;color:var(--ivory);padding:9px 13px;font-size:10px;letter-spacing:.12em}.map-tools button:hover,.backmap:hover{border-color:var(--gold);color:var(--gold)}.map-hint{position:absolute;bottom:22px;left:25px;color:#8e8881;font-size:9px;letter-spacing:.18em;text-transform:uppercase}.map-side{border-left:1px solid var(--line);padding:34px 27px;display:flex;flex-direction:column;justify-content:space-between;background:rgba(10,10,10,.7)}.map-side h3{font-size:35px;line-height:.95;margin:12px 0}.map-side p{font-size:12px;line-height:1.8;color:var(--muted)}.side-image{height:160px;background-color:#241719;background-size:cover;background-position:center;margin:22px 0;position:relative}.side-image:after{content:"";position:absolute;inset:0;background:linear-gradient(0deg,#09090966,transparent)}.side-dish{font-family:var(--serif);font-size:25px}.side-meta{color:var(--gold);font-size:9px;letter-spacing:.2em;text-transform:uppercase;margin-top:8px}.map-progress{height:2px;background:#333;margin-top:30px}.map-progress span{display:block;width:10%;height:100%;background:var(--red);transition:width .4s}
+.explore{padding-top:0;background:#090909}.explore-panel{display:none;border:1px solid var(--line);background:#111;overflow:hidden;animation:rise .7s ease}.explore-panel.open{display:block}.explore-hero{min-height:440px;position:relative;background-size:cover;background-position:center;display:flex;align-items:end;padding:55px 6%;isolation:isolate}.explore-hero:before{content:"";position:absolute;inset:0;background:linear-gradient(0deg,#090909 0%,rgba(9,9,9,.12) 85%),linear-gradient(90deg,#090909aa,transparent);z-index:-1}.explore-hero h2{font-size:clamp(52px,7vw,92px);margin:12px 0 5px;line-height:.85}.explore-hero .intro{max-width:560px;color:#ddd;font-size:13px;line-height:1.8}.explore-body{padding:45px 6% 65px}.explore-top{display:flex;justify-content:space-between;align-items:center;margin-bottom:32px}.explore-top small{color:var(--gold);letter-spacing:.2em;font-size:9px}.dish-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:15px}.dish-card{border:1px solid #2a2421;background:#151313;cursor:pointer;transition:.35s;overflow:hidden}.dish-card:hover,.dish-card:focus{transform:translateY(-6px);border-color:var(--gold);outline:none}.empty-result{grid-column:1/-1;color:var(--muted);font-size:13px;padding:28px;border:1px dashed var(--line)}.dish-photo{height:175px;background-color:#241719;background-size:cover;background-position:center;position:relative}.dish-photo:after{content:"";position:absolute;inset:0;background:linear-gradient(0deg,#111,transparent 55%)}.dish-card-content{padding:17px}.dish-card h4{font-family:var(--serif);font-weight:500;font-size:23px;margin:0 0 3px}.dish-card .cn{color:var(--gold);font-size:12px}.dish-card p{font-size:11px;color:var(--muted);line-height:1.65;margin:10px 0 0}.dish-detail{display:none;margin-top:24px;padding:30px;border:1px solid var(--line);background:#0c0b0b;grid-template-columns:1fr 1fr;gap:35px;animation:rise .45s ease}.dish-detail.open{display:grid}.dish-detail h3{font-size:42px;margin:6px 0}.dish-detail p,.dish-detail li{color:#bdb5ab;font-size:12px;line-height:1.85}.dish-detail h5{color:var(--gold);font-size:9px;letter-spacing:.2em;text-transform:uppercase;margin:20px 0 8px}.dish-detail ul{padding-left:17px}
+.searchbar{display:flex;align-items:center;gap:12px;border-bottom:1px solid var(--line);max-width:390px;padding:10px 0}.searchbar input{background:none;border:0;outline:0;color:var(--ivory);width:100%;font-size:12px}.searchbar input::placeholder{color:#777}
+.culture{background:#111;padding-bottom:125px}.culture-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:var(--line);border:1px solid var(--line)}.culture-card{background:#111;padding:32px 28px;min-height:250px;position:relative;overflow:hidden}.culture-card .num{font-family:var(--serif);font-size:44px;color:#4b2425}.culture-card h3{font-size:29px;margin:12px 0}.culture-card p{font-size:12px;color:var(--muted);line-height:1.8;margin:0}.culture-card:hover{background:#191313}.etiquette{display:grid;grid-template-columns:1fr 1fr;gap:55px;margin-top:80px;align-items:center}.etiquette-visual{min-height:360px;background:linear-gradient(0deg,#090909aa,#09090922),url('https://images.unsplash.com/photo-1547592180-85f173990554?auto=format&fit=crop&w=1200&q=85') center/cover;position:relative}.etiquette-visual span{position:absolute;bottom:22px;left:24px;color:var(--gold);font-size:9px;letter-spacing:.2em}.etiquette h2{font-size:52px;line-height:.92;margin:12px 0 20px}.rules{display:grid;gap:12px}.rule{display:flex;gap:15px;border-bottom:1px solid #302523;padding:13px 0}.rule b{font-size:10px;color:var(--gold);letter-spacing:.12em;min-width:70px}.rule p{font-size:12px;color:var(--muted);line-height:1.6;margin:0}
+.footer{padding:55px 8vw;border-top:1px solid var(--line);display:flex;justify-content:space-between;align-items:center;color:#777;font-size:10px;letter-spacing:.12em}.footer strong{color:var(--gold);font-weight:500}.modal-backdrop{display:none;position:fixed;inset:0;background:#000c;z-index:50;align-items:center;justify-content:center;padding:20px}.modal-backdrop.open{display:flex}.modal{max-width:650px;width:100%;background:#151111;border:1px solid var(--gold);padding:38px;position:relative}.modal button.close{position:absolute;right:16px;top:14px;background:none;border:0;color:var(--ivory);font-size:24px}.modal h3{font-size:43px;margin:12px 0}.modal p{font-size:13px;line-height:1.8;color:var(--muted)}.toast{position:fixed;bottom:22px;left:50%;transform:translate(-50%,20px);opacity:0;background:#211416;border:1px solid var(--gold);padding:12px 18px;font-size:11px;z-index:60;transition:.3s}.toast.show{opacity:1;transform:translate(-50%,0)}
+@keyframes pulse{0%{r:7;opacity:.7}100%{r:19;opacity:0}}@keyframes rise{from{opacity:0;transform:translateY(22px)}to{opacity:1;transform:translateY(0)}}
+@media(max-width:1000px){.map-shell{grid-template-columns:1fr}.map-side{border-left:0;border-top:1px solid var(--line);display:grid;grid-template-columns:1fr 1fr;gap:20px}.map-side .side-copy{grid-column:1}.side-image{grid-column:2;grid-row:1/4;height:190px}.dish-grid{grid-template-columns:repeat(2,1fr)}}
+@media(max-width:650px){.nav{height:66px;padding:0 5vw}.navlinks{display:none;position:absolute;top:66px;left:0;right:0;background:#0c0c0c;padding:25px;flex-direction:column;gap:22px}.navlinks.show{display:flex}.menu{display:block}.hero{padding:0 7vw 12vh;background-position:58% center}.hero p{font-size:13px}.scroll-note{display:none}section{padding:80px 6vw}.section-head{display:block}.section-head p{margin-top:22px}.map-area,#chinaMap{min-height:430px}.map-side{display:block;padding:24px}.side-image{height:145px}.map-hint{font-size:8px}.dish-grid{grid-template-columns:1fr 1fr;gap:8px}.dish-photo{height:125px}.dish-card-content{padding:12px}.dish-card h4{font-size:19px}.dish-detail{grid-template-columns:1fr;padding:20px}.culture-grid{grid-template-columns:1fr}.culture-card{min-height:auto}.etiquette{grid-template-columns:1fr;gap:25px}.etiquette-visual{min-height:260px}.etiquette h2{font-size:44px}.explore-hero{min-height:370px;padding:35px 7%}.explore-body{padding:28px 5%}.footer{display:block;line-height:2.2}.footer span{display:block}.section-head h2{font-size:48px}}
+
+.region-picker-wrap{margin-top:26px;border:1px solid var(--line);background:#100e0e;padding:24px}
+.picker-heading{display:flex;align-items:center;justify-content:space-between;gap:16px;margin-bottom:16px}
+.picker-heading p{color:var(--muted);font-size:12px;margin:0}
+.region-picker{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:9px}
+.region-choice{min-height:54px;padding:10px 12px;border:1px solid rgba(197,164,109,.25);background:#191313;color:var(--ivory);text-align:left;display:flex;align-items:center;justify-content:space-between;gap:8px;touch-action:manipulation;-webkit-tap-highlight-color:transparent}
+.region-choice span{font-size:12px}.region-choice small{color:var(--gold);font-family:var(--serif);font-size:15px}
+.region-choice:active,.region-choice.active{background:#59202a;border-color:var(--gold)}
+button,.region-choice,.dish-card,.map-pin{-webkit-tap-highlight-color:transparent;touch-action:manipulation}
+button{min-height:44px}
+@media(max-width:1000px){.region-picker{grid-template-columns:repeat(3,minmax(0,1fr))}}
+@media(max-width:650px){
+ .region-picker-wrap{padding:16px;margin-top:16px}.picker-heading{display:block}.picker-heading p{margin-top:8px;line-height:1.6}
+ .region-picker{grid-template-columns:repeat(2,minmax(0,1fr));gap:8px}.region-choice{min-height:52px;padding:10px}
+ .map-area,#chinaMap{min-height:330px}.map-tools{top:10px;left:10px;gap:5px}.map-tools button{padding:8px 10px;font-size:9px}
+ .map-hint{left:12px;bottom:12px;max-width:80%;line-height:1.5}
+ .map-side{padding:18px}.side-copy .cta{width:100%}
+ .dish-grid{grid-template-columns:1fr}.dish-photo{height:180px}.dish-card{display:grid;grid-template-columns:38% 1fr;min-height:150px}.dish-card-content{padding:14px}
+ .searchbar{width:100%;margin-top:14px}.searchbar input{min-width:0;width:100%}
+ .explore-top{display:block}.explore-hero{background-position:center}.navlinks a{padding:8px 0}
+}
+
+</style>
+</head>
+<body class="grain">
+<header class="nav"><a class="brand" href="#home">THE TASTE OF CHINA<span>中国味道</span></a><nav class="navlinks" id="navlinks"><a href="#home">Home</a><a href="#explore">Explore China</a><a href="#culture">Food Culture</a><a href="#about">About</a></nav><button class="menu" id="menuBtn">MENU</button></header>
+<main>
+<section class="hero" id="home"><div class="hero-content"><div class="eyebrow">A culinary atlas · Est. in tradition</div><h1>A JOURNEY THROUGH<br>THE <em>FLAVOURS</em><br>OF CHINA</h1><div class="hanzi">探索中国美食文化</div><p>From the fiery kitchens of Sichuan to the delicate tea houses of Hangzhou, discover a country told through its ingredients, rituals and unforgettable regional dishes.</p><button class="cta" id="exploreBtn">Explore the map&nbsp; ↗</button></div><div class="scroll-note">SCROLL TO DISCOVER</div></section>
+<section class="map-section" id="explore"><div class="section-head"><div><div class="eyebrow">01 — The culinary atlas</div><h2>Sixteen places.<br><em style="color:var(--gold)">Countless flavours.</em></h2></div><p>Choose a destination on the map. Follow its flavours from place to plate, and discover the stories that make each region distinct.</p></div>
+<div class="map-shell"><div class="map-area"><svg id="chinaMap" viewBox="0 0 900 620" role="img" aria-label="Interactive map of China with sixteen culinary destinations"></svg><div class="map-tools"><button id="zoomIn">＋</button><button id="zoomOut">－</button><button id="resetMap">RESET VIEW</button></div><div class="map-hint">Select a glowing destination to begin your journey</div></div>
+<aside class="map-side"><div class="side-copy"><div class="eyebrow">Selected destination</div><h3 id="sideCity">Choose a region</h3><div class="side-meta" id="sideRegion">China · Culinary atlas</div><p id="sideDesc">Each pin opens a regional story: signature dishes, local techniques, dining traditions and the history behind the flavours.</p><div class="side-dish" id="sideDish">Your next discovery awaits.</div><div class="side-meta" id="sideDishCn">点击地图开始探索</div><button class="cta" style="margin-top:24px;padding:13px 16px" id="sideExplore">Explore this region ↗</button></div><div class="side-image" id="sideImage" style="background-image:url('https://images.unsplash.com/photo-1563245372-f21724e3856d?auto=format&fit=crop&w=700&q=80')"></div><div><div class="side-meta">Journey progress</div><div class="map-progress"><span id="progressBar"></span></div><p style="font-size:10px" id="progressText">0 of 16 destinations explored</p></div></aside></div>
+<div class="region-picker-wrap"><div class="picker-heading"><span class="eyebrow">Choose a destination</span><p>Tap any region below — you do not need to tap the map pins.</p></div><div class="region-picker" id="regionPicker" aria-label="Choose a Chinese food region"></div></div>
+</section>
+<section class="explore" id="regionSection"><div class="explore-panel" id="explorePanel"><div class="explore-hero" id="regionHero"><div><div class="eyebrow" id="regionEyebrow">Regional table · 01</div><h2 id="regionTitle">Sichuan</h2><div class="hanzi" id="regionCn">四川</div><p class="intro" id="regionIntro"></p></div></div><div class="explore-body"><div class="explore-top"><div><small>THE REGIONAL COLLECTION</small><h3 style="font-size:35px;margin:7px 0">A taste of the place</h3></div><div class="searchbar"><span style="color:var(--gold)">⌕</span><input id="dishSearch" placeholder="Search dishes in this region…" aria-label="Search dishes"></div></div><div class="dish-grid" id="dishGrid"></div><div class="dish-detail" id="dishDetail"></div><div style="text-align:center;margin-top:40px"><button class="backmap" id="backMap">← BACK TO THE MAP</button></div></div></div></section>
+<section class="culture" id="culture"><div class="section-head"><div><div class="eyebrow">02 — The rituals around the table</div><h2>Beyond the food:<br><em style="color:var(--gold)">the art of Chinese dining.</em></h2></div><p>In China, a meal is more than nourishment. It is hospitality, family, celebration and a language of care expressed through shared dishes.</p></div>
+<div class="culture-grid">
+<article class="culture-card"><div class="num">01</div><h3>The shared table</h3><p>Many Chinese meals are served family-style, with dishes placed at the centre so everyone can take a little of everything. Sharing communicates warmth and belonging.</p></article>
+<article class="culture-card"><div class="num">02</div><h3>Chopsticks</h3><p>More than utensils, chopsticks are part of a long dining tradition. They are used with care and have their own etiquette, especially at formal meals.</p></article>
+<article class="culture-card"><div class="num">03</div><h3>Tea, poured with care</h3><p>Tea accompanies everyday meals and formal gatherings alike. Offering and refilling tea can be a quiet gesture of respect and hospitality.</p></article>
+<article class="culture-card"><div class="num">04</div><h3>The banquet</h3><p>Formal banquets often feature a sequence of shared dishes, symbolic ingredients and a host who makes sure guests are welcomed and well fed.</p></article>
+<article class="culture-card"><div class="num">05</div><h3>New Year traditions</h3><p>Foods carry wishes: dumplings can suggest wealth, fish represents abundance, and long noodles are associated with longevity.</p></article>
+<article class="culture-card"><div class="num">06</div><h3>North & south</h3><p>Wheat-based foods such as noodles and dumplings are prominent in much of the north; rice is central in many southern food traditions. Local variation is immense.</p></article>
+</div>
+<div class="etiquette"><div class="etiquette-visual"><span>THE LANGUAGE OF THE TABLE · 餐桌礼仪</span></div><div><div class="eyebrow">A small guide to good manners</div><h2>Chopsticks<br>with <em style="color:var(--gold)">consideration.</em></h2><div class="rules"><div class="rule"><b>DO</b><p>Rest chopsticks neatly on a holder or across your bowl when taking a pause.</p></div><div class="rule"><b>DO</b><p>Offer food to elders or guests when appropriate, using serving utensils where provided.</p></div><div class="rule"><b>DON'T</b><p>Do not stand chopsticks upright in a bowl of rice; this resembles incense at a funeral.</p></div><div class="rule"><b>DON'T</b><p>Avoid pointing with chopsticks, tapping bowls, or using them to search through shared dishes.</p></div><div class="rule"><b>DON'T</b><p>Do not pass food from chopsticks to chopsticks; this echoes a funeral ritual.</p></div></div></div></div>
+</section>
+<section id="about" style="padding-top:80px;padding-bottom:80px"><div class="eyebrow">03 — A living heritage</div><h2 style="font-size:clamp(40px,5vw,68px);max-width:760px;line-height:.98;margin:20px 0">One country, many culinary worlds.</h2><p style="max-width:650px;color:var(--muted);font-size:13px;line-height:1.9">Chinese food culture cannot be reduced to a single flavour. Geography, climate, trade, migration and family traditions have shaped distinct regional cuisines. This digital exhibition is an invitation to explore that diversity—one dish, one city, one shared table at a time.</p></section>
+</main>
+<footer class="footer"><span><strong>THE TASTE OF CHINA</strong> · 中国味道</span><span>A DIGITAL JOURNEY THROUGH CULINARY HERITAGE</span><span>MADE WITH CURIOSITY & RESPECT</span></footer>
+<div class="modal-backdrop" id="modal"><div class="modal"><button class="close" id="closeModal">×</button><div class="eyebrow">A note on the journey</div><h3>Food is a living story.</h3><p>Recipes and customs evolve across families, cities and generations. The regional descriptions here are introductions—not rigid rules—and many dishes have multiple origin stories or local variations.</p><button class="cta" id="modalOkay">Continue exploring</button></div></div><div class="toast" id="toast"></div>
+<script>
+const regions=[
+{id:'sichuan',name:'Sichuan',cn:'四川',city:'Chengdu',lat:30.66,lon:104.06,style:'Bold, aromatic and famously málà — a tingling combination of chilli heat and Sichuan peppercorn fragrance.',dish:'Sichuan Hotpot',dishCn:'四川火锅',image:'photo-1563245372-f21724e3856d',hero:'photo-1552611052-33e04de081de',desc:'A bubbling communal pot brings friends and family around the table. Diners cook thinly sliced meats, vegetables and tofu in a deeply seasoned broth.',dishes:[
+['Sichuan Hotpot','四川火锅','A communal simmering pot, often built around a chilli- and Sichuan-peppercorn-rich broth.','Málà broth, dried chillies, Sichuan peppercorns, beef tallow or oil, vegetables and thinly sliced meats.','Keep ingredients moving in the simmering broth until cooked; dip them into sesame oil, garlic or other sauces.','Hotpot has many regional forms. Sichuan-style broth is especially associated with bold chilli heat and the numbing aroma of huājiāo.'],
+['Mapo Tofu','麻婆豆腐','Silken tofu in a savoury, spicy sauce, traditionally finished with chilli oil and Sichuan pepper.','Soft tofu, doubanjiang (fermented chilli-bean paste), minced meat, garlic, ginger and Sichuan pepper.','Spoon it over steamed rice. Its defining character is the balance of savoury fermented bean, chilli and málà.','The name is commonly linked to a pockmarked-faced woman said to have sold the dish in Chengdu during the Qing period.'],
+['Kung Pao Chicken','宫保鸡丁','A classic stir-fry pairing diced chicken with peanuts, chillies and a sweet-sour savoury sauce.','Chicken, peanuts, dried chillies, scallions, soy, vinegar and sugar.','Eat with rice. In Sichuan versions, dried chillies and Sichuan pepper add fragrance and gentle numbing heat.','The name refers to a Qing-era official title, “Gongbao”; versions outside China can differ considerably.'],
+['Dan Dan Noodles','担担面','Noodles dressed with a punchy sauce of chilli oil, preserved vegetables and savoury minced meat.','Wheat noodles, chilli oil, Sichuan pepper, ya cai preserved mustard greens, soy and minced pork.','Toss thoroughly so the sauce coats every strand. The name refers to the carrying pole once used by street vendors.','The street-food association is central to the dish’s identity; dry and soup versions both exist.']
+]},
+{id:'guangdong',name:'Guangdong',cn:'广东',city:'Guangzhou',lat:23.13,lon:113.26,style:'Fresh ingredients, delicate seasoning, steaming, roasting and the social ritual of yum cha.',dish:'Dim Sum',dishCn:'点心',image:'photo-1563245372-f21724e3856d',hero:'photo-1563245372-f21724e3856d',desc:'Cantonese food culture prizes freshness and careful technique. In teahouses, small plates arrive in waves and turn a meal into a leisurely social ritual.',dishes:[
+['Dim Sum','点心','A family of small savoury and sweet dishes traditionally enjoyed with tea.','Shrimp, pork, rice and wheat wrappers, mushrooms, greens and delicate seasonings.','Order several plates to share with tea. Use chopsticks or a spoon depending on the dish.','Yum cha literally means “drink tea”; dim sum became closely associated with teahouse culture in Guangdong.'],
+['Char Siu','叉烧','Cantonese barbecued pork, lacquered with a glossy sweet-savoury glaze.','Pork shoulder or neck, maltose or honey, fermented bean curd, hoisin and five-spice.','Served sliced with rice, noodles or tucked into bao. Its red exterior is iconic, though colouring is not essential.','The name means “fork-roasted”, recalling the traditional method of roasting strips of pork.'],
+['Roast Goose','烧鹅','Crisp-skinned roast goose with juicy meat and aromatic seasoning.','Goose, five-spice, soy, maltose, ginger and spring onion.','Often chopped and served with plum sauce and rice. The crisp skin is prized.','Roast meats displayed in Cantonese shops are known as siu mei.'],
+['Wonton Noodles','云吞面','Springy egg noodles with delicate shrimp-and-pork wontons in a clear broth.','Egg noodles, shrimp, pork, dried seafood stock, leafy greens and scallions.','Lift noodles with chopsticks and use a spoon for broth and wontons.','The thin, springy noodle texture is a hallmark of the Cantonese style.']
+]},
+{id:'beijing',name:'Beijing',cn:'北京',city:'Beijing',lat:39.90,lon:116.40,style:'Northern wheat traditions, imperial culinary history and the theatre of tableside carving.',dish:'Peking Roast Duck',dishCn:'北京烤鸭',image:'photo-1544025162-d76694265947',hero:'photo-1544025162-d76694265947',desc:'Beijing’s food traditions reflect northern wheat culture and centuries of imperial and urban dining. Roast duck is the city’s best-known culinary emblem.',dishes:[
+['Peking Roast Duck','北京烤鸭','A celebrated roast duck known for thin, crisp skin and carefully carved slices.','Whole duck, maltose glaze, pancakes, scallions, cucumber and sweet bean sauce.','Wrap duck, scallion, cucumber and sauce in a thin pancake. It is traditionally carved by a skilled chef.','The dish developed through imperial court traditions and became a signature of Beijing restaurants.'],
+['Zhajiangmian','炸酱面','Wheat noodles topped with a rich fermented soybean paste sauce and fresh vegetables.','Wheat noodles, pork, fermented soybean paste, cucumber, radish and bean sprouts.','Mix the sauce and crisp vegetable toppings through the noodles before eating.','It is a beloved everyday noodle dish with many household variations.'],
+['Jiaozi','饺子','Dumplings filled with meat or vegetables, especially associated with northern Chinese foodways.','Wheat wrappers, pork, cabbage, chives, ginger and soy.','Boiled, steamed or pan-fried; often dipped in black vinegar with a little chilli.','Dumplings are especially associated with family gatherings and Lunar New Year in northern China.']
+]},
+{id:'shanghai',name:'Shanghai',cn:'上海',city:'Shanghai',lat:31.23,lon:121.47,style:'Jiangnan influences, delicate sweetness, river and sea ingredients, and refined braising.',dish:'Xiaolongbao',dishCn:'小笼包',image:'photo-1563245372-f21724e3856d',hero:'photo-1563245372-f21724e3856d',desc:'Shanghai’s food scene draws on the Jiangnan region’s gentle, often subtly sweet flavour profile. Its soup dumplings are a globally recognised speciality.',dishes:[
+['Xiaolongbao','小笼包','Delicate steamed buns filled with pork and savoury hot soup.','Thin wheat dough, minced pork, ginger, scallion and aspic that melts into soup.','Place on a spoon, nibble a small opening, sip the broth, then eat the dumpling with vinegar and ginger.','The soup is created by gelatin-rich stock that liquefies during steaming.'],
+['Shengjianbao','生煎包','Pan-fried buns with a golden crisp base, fluffy sides and juicy filling.','Wheat dough, pork, gelatin-rich stock, sesame and scallions.','Eat carefully while hot; the filling can be very juicy. Often enjoyed as a breakfast or snack.','A Shanghai street-food favourite, distinct from steamed xiaolongbao.'],
+['Shanghai Braised Pork','红烧肉','Rich cubes of pork belly slowly braised until tender in a glossy soy-based sauce.','Pork belly, soy sauce, Shaoxing wine, sugar, ginger and scallions.','Served with rice to balance the rich, sweet-savoury sauce.','Red-braising is a broad Chinese technique; local versions vary in sweetness and seasoning.']
+]},
+{id:'hunan',name:'Hunan',cn:'湖南',city:'Changsha',lat:28.23,lon:112.94,style:'Fragrant, chilli-forward cooking with fresh heat, pickled ingredients and bold savouriness.',dish:'Steamed Fish Head with Chopped Chili',dishCn:'剁椒鱼头',image:'photo-1515003197210-e0cd7184f8b5',hero:'photo-1515003197210-e0cd7184f8b5',desc:'Hunan cuisine is known for its direct chilli fragrance and lively sour, salty and smoky notes. Fresh and pickled chillies are central to many dishes.',dishes:[
+['Steamed Fish Head with Chopped Chili','剁椒鱼头','A dramatic steamed fish head covered with chopped pickled red chillies.','Freshwater fish head, chopped pickled chillies, ginger, garlic, scallions and soy.','Eat with rice; the aromatic chilli juices are spooned over the fish and rice.','The dish showcases Hunan’s love of chilli and fermented or pickled flavours.'],
+['Hunan Stir-Fried Pork','小炒肉','A fast, high-heat stir-fry of pork with fresh green chillies.','Pork, green chillies, garlic, fermented black beans and soy.','Best eaten hot with steamed rice. The wok gives the pork and chillies a smoky edge.','“Xiaochao” refers to quick stir-frying; the technique is central to everyday Hunan cooking.']
+]},
+{id:'shaanxi',name:'Shaanxi',cn:'陕西',city:"Xi’an",lat:34.34,lon:108.94,style:'Wheat, hand-pulled noodles, lamb and robust flavours shaped by the old Silk Road crossroads.',dish:'Biang Biang Noodles',dishCn:'油泼面',image:'photo-1555126634-323283e090fa',hero:'photo-1555126634-323283e090fa',desc:'In Xi’an, wheat-based foods are central. Noodles and breads reflect a food culture shaped by northern agriculture and centuries of exchange along trade routes.',dishes:[
+['Biang Biang Noodles','油泼面','Wide, belt-like wheat noodles finished with hot oil poured over aromatics.','Hand-pulled wheat noodles, chilli flakes, garlic, scallions, vinegar and hot oil.','Toss well and eat immediately while the chilli oil is fragrant.','The famous character biáng is unusually complex and associated with the noodle’s name.'],
+['Roujiamo','肉夹馍','Often described as a Chinese-style meat sandwich: chopped braised meat tucked into flatbread.','Flatbread, slow-braised pork or other meat, spices and cooking broth.','Eat by hand while warm. The bread can be crisp outside and tender within.','The dish has deep roots in Shaanxi street-food culture and is sometimes called “Chinese hamburger”.']
+]},
+{id:'fujian',name:'Fujian',cn:'福建',city:'Fuzhou',lat:26.07,lon:119.30,style:'Coastal abundance, delicate broths, seafood, umami and the art of slow simmering.',dish:'Buddha Jumps Over the Wall',dishCn:'佛跳墙',image:'photo-1547592180-85f173990554',hero:'photo-1547592180-85f173990554',desc:'Fujian cuisine is celebrated for seafood and carefully made soups. Its signature banquet dish layers prized ingredients in a long-simmered broth.',dishes:[
+['Buddha Jumps Over the Wall','佛跳墙','An elaborate celebratory soup combining a range of premium ingredients in a rich broth.','Depending on recipe: abalone, sea cucumber, fish maw, mushrooms, poultry, ham and stock.','Served in small portions at banquets; the broth is the heart of the dish.','Its evocative name is attached to stories about an aroma so enticing that a monk might leave his temple wall.'],
+['Fujian Fish Ball Soup','鱼丸汤','Tender fish-paste balls served in a clear, comforting broth.','Fresh fish, starch, pork filling in some versions, stock and scallions.','Enjoy hot with a spoon; the texture of the fish ball is a key part of the experience.','Fuzhou is particularly associated with fish balls that may contain a savoury centre.']
+]},
+{id:'jiangsu',name:'Jiangsu',cn:'江苏',city:'Nanjing',lat:32.06,lon:118.80,style:'Refined Huaiyang techniques, knife skills, careful knife work and a focus on texture.',dish:'Lion’s Head Meatballs',dishCn:'狮子头',image:'photo-1547592180-85f173990554',hero:'photo-1547592180-85f173990554',desc:'Jiangsu’s culinary tradition is associated with elegant presentation, precise knife work and nuanced seasoning. Huaiyang cooking is one of its celebrated styles.',dishes:[
+['Yangzhou Fried Rice','扬州炒饭','A colourful fried rice combining grains with diced ingredients in a balanced, light style.','Rice, egg, shrimp, ham, peas, carrots and scallions; versions vary.','Eat as a main or shared dish. The grains should remain distinct rather than clumped.','The dish is named for Yangzhou and has many interpretations internationally.'],
+['Lion’s Head Meatballs','狮子头','Large, tender pork meatballs often gently braised with cabbage.','Minced pork, water chestnut, ginger, scallion, soy and stock.','Served in a shared pot or individual bowl with broth and greens.','The name refers to the meatball’s size and the mane-like cabbage around it in some presentations.']
+]},
+{id:'zhejiang',name:'Zhejiang',cn:'浙江',city:'Hangzhou',lat:30.27,lon:120.15,style:'Fresh, seasonal ingredients and gentle seasoning, with a special place for freshwater fish and tea.',dish:'Dongpo Pork',dishCn:'东坡肉',image:'photo-1547592180-85f173990554',hero:'photo-1547592180-85f173990554',desc:'Hangzhou and the wider Zhejiang region are known for fresh, seasonal flavours. West Lake scenery, tea culture and literary history all shape its culinary identity.',dishes:[
+['Dongpo Pork','东坡肉','Pork belly slowly braised until tender in a glossy soy, wine and sugar sauce.','Pork belly, Shaoxing wine, soy sauce, sugar, ginger and scallions.','Traditionally served in a small portion with rice. The long braise creates a soft texture.','Named for the Song dynasty poet and official Su Dongpo, though the dish’s exact origin story is layered.'],
+['West Lake Fish in Vinegar Gravy','西湖醋鱼','A freshwater fish dish finished with a sweet-sour vinegar sauce.','Fresh fish, vinegar, sugar, ginger, soy and starch.','Served whole or in portions with sauce spooned over the fish.','The dish is associated with Hangzhou’s West Lake and its local freshwater fish tradition.']
+]},
+{id:'xinjiang',name:'Xinjiang',cn:'新疆',city:'Ürümqi',lat:43.82,lon:87.62,style:'Silk Road foodways, lamb, cumin, hand-pulled noodles, breads and influences from Central Asia.',dish:'Xinjiang Lamb Skewers',dishCn:'烤羊肉串',image:'photo-1529042410759-befb1204b468',hero:'photo-1529042410759-befb1204b468',desc:'Xinjiang’s food culture reflects the region’s many communities and its historic place along Silk Road routes. Lamb, wheat, spices and communal hospitality are prominent.',dishes:[
+['Xinjiang Lamb Skewers','烤羊肉串','Charcoal-grilled lamb pieces seasoned with cumin and chilli.','Lamb, cumin, chilli flakes, salt and sometimes onion.','Eat hot from the skewer, often with flatbread and other shared dishes.','The aroma of cumin over charcoal is a familiar feature of Xinjiang street food.'],
+['Polo','抓饭','A celebratory rice pilaf cooked with carrots, onions and lamb.','Rice, lamb, carrots, onions, oil and cumin.','Traditionally shared from a large platter at gatherings; accompaniments vary.','Also known as pilaf, polo has many versions across Central Asia and Xinjiang.']
+]}
+,{id:'yunnan',name:'Yunnan',cn:'云南',city:'Kunming',lat:25.04,lon:102.71,style:'Mountain ingredients, wild mushrooms, rice noodles and flavours shaped by remarkable ethnic diversity.',dish:'Crossing-the-Bridge Noodles',dishCn:'过桥米线',image:'photo-1569718212165-3a8278d5f624',hero:'photo-1569718212165-3a8278d5f624',desc:'Yunnan cuisine draws on mountain produce, fresh herbs, mushrooms and the food traditions of many communities. Its dishes are known for freshness, fragrance and variety.',dishes:[
+['Crossing-the-Bridge Noodles','过桥米线','A bowl of rice noodles served with hot broth and small plates of raw or lightly cooked toppings.','Rice noodles, chicken or pork broth, sliced meat, vegetables, herbs and egg.','Add the ingredients to the steaming broth in stages, then add noodles and enjoy hot.','The dish is associated with Mengzi in southern Yunnan; a popular story tells of a scholar whose wife carried food across a bridge.'],
+['Yunnan Wild Mushroom Hotpot','野生菌火锅','A seasonal hotpot celebrating the region’s great variety of edible mushrooms.','Locally gathered edible mushrooms, stock, herbs and dipping sauces.','Cook mushrooms thoroughly in the simmering broth; never eat wild mushrooms raw or unidentified.','The mushroom season is an important part of Yunnan’s food calendar and local markets.']
+]}
+,{id:'shandong',name:'Shandong',cn:'山东',city:'Jinan',lat:36.65,lon:117.12,style:'Northern wheat traditions, seafood, clear soups and the refined techniques of Lu cuisine.',dish:'Sweet and Sour Carp',dishCn:'糖醋鲤鱼',image:'photo-1515003197210-e0cd7184f8b5',hero:'photo-1515003197210-e0cd7184f8b5',desc:'One of China’s major culinary traditions, Shandong cuisine is known for seafood, wheat-based foods, clear broths and carefully controlled cooking techniques.',dishes:[
+['Sweet and Sour Carp','糖醋鲤鱼','A whole carp fried until crisp and finished with a bright sweet-sour sauce.','Fresh carp, vinegar, sugar, starch, ginger and scallions.','Share the fish at the centre of the table and spoon the sauce over each portion.','The dish is strongly associated with the Yellow River region and classic Lu cuisine.'],
+['Dezhou Braised Chicken','德州扒鸡','A deeply flavoured whole chicken braised until exceptionally tender.','Chicken, soy sauce, aromatics and a blend of spices.','Served warm or at room temperature, often shared with wheat-based sides.','Dezhou in Shandong became famous for this style of seasoned braised chicken.']
+]}
+,{id:'hubei',name:'Hubei',cn:'湖北',city:'Wuhan',lat:30.59,lon:114.30,style:'River and lake flavours, hearty noodles, lotus root and a lively breakfast culture.',dish:'Hot Dry Noodles',dishCn:'热干面',image:'photo-1555126634-323283e090fa',hero:'photo-1555126634-323283e090fa',desc:'Wuhan sits at the meeting of major rivers and lakes. Its food culture celebrates noodles, freshwater ingredients and energetic morning food markets.',dishes:[
+['Hot Dry Noodles','热干面','Chewy wheat noodles coated in a rich sesame paste sauce.','Wheat noodles, sesame paste, soy, sesame oil, pickled vegetables and scallions.','Toss thoroughly so every strand is coated; traditionally enjoyed as a breakfast favourite.','Regarded as one of Wuhan’s best-known street foods and a signature of the city.'],
+['Lotus Root Soup','莲藕排骨汤','A comforting slow-simmered soup of pork ribs and lotus root.','Lotus root, pork ribs, ginger, scallions and water.','Serve hot in bowls; the lotus root becomes tender while keeping a gentle bite.','Lotus root is widely grown around Hubei’s lakes and is central to local home cooking.']
+]}
+,{id:'henan',name:'Henan',cn:'河南',city:'Zhengzhou',lat:34.75,lon:113.62,style:'Ancient Central Plains foodways, wheat noodles, warming soups and hearty everyday dishes.',dish:'Hulatang Pepper Soup',dishCn:'胡辣汤',image:'photo-1569718212165-3a8278d5f624',hero:'photo-1569718212165-3a8278d5f624',desc:'Henan lies in the historic Central Plains. Its cuisine is shaped by wheat, noodles, broths and filling dishes suited to a busy everyday table.',dishes:[
+['Hulatang Pepper Soup','胡辣汤','A thick, aromatic breakfast soup with peppery warmth and varied textures.','Broth, pepper, chilli, glass noodles, tofu skin, vegetables and meat in some versions.','Enjoy piping hot, often with a baked flatbread or steamed bun.','A beloved breakfast in Henan, with recipes varying between cities and vendors.'],
+['Stewed Noodles','烩面','Broad hand-pulled noodles served in a rich, warming soup.','Wheat noodles, lamb or beef broth, vegetables, tofu skin and coriander.','Eat from a deep bowl while hot, combining noodles and broth in each bite.','Henan-style hui mian is particularly associated with Zhengzhou.']
+]}
+,{id:'guangxi',name:'Guangxi',cn:'广西',city:'Guilin',lat:25.27,lon:110.29,style:'Rice noodles, sour and spicy accents, river fish and flavours from southern China’s diverse communities.',dish:'Guilin Rice Noodles',dishCn:'桂林米粉',image:'photo-1563245372-f21724e3856d',hero:'photo-1563245372-f21724e3856d',desc:'Guangxi’s food culture features rice, fresh herbs, pickled ingredients and lively noodle shops. Guilin rice noodles are an everyday local favourite.',dishes:[
+['Guilin Rice Noodles','桂林米粉','Rice noodles topped with savoury braised meat, peanuts and pickled vegetables.','Rice noodles, braised beef or pork, peanuts, pickled beans, chilli and herbs.','Mix the toppings through the noodles; broth may be served separately or added to taste.','A defining everyday dish of Guilin, with each shop keeping its own broth and topping style.'],
+['Beer Fish','啤酒鱼','River fish cooked with beer, tomatoes, chillies and aromatics.','Fresh river fish, beer, tomatoes, ginger, garlic and peppers.','Usually served as a shared centrepiece with rice.','Especially associated with Yangshuo and the Li River area.']
+]}
+,{id:'liaoning',name:'Liaoning',cn:'辽宁',city:'Shenyang',lat:41.80,lon:123.43,style:'Northeastern comfort food, dumplings, pickled vegetables and generous shared dishes.',dish:'Guo Bao Rou',dishCn:'锅包肉',image:'photo-1544025162-d76694265947',hero:'photo-1544025162-d76694265947',desc:'Liaoning is part of China’s Northeast, where cold winters and regional history shape a cuisine of hearty portions, dumplings and crisp, savoury-sweet dishes.',dishes:[
+['Guo Bao Rou','锅包肉','Crisp slices of pork tossed in a glossy sweet-and-sour sauce.','Pork, potato starch, vinegar, sugar, ginger and scallions.','Eat soon after serving so the coating stays crisp; commonly shared with other dishes.','A celebrated Northeastern dish that became especially popular in Harbin and across the region.'],
+['Sour Cabbage and Pork Stew','酸菜炖白肉','A warming stew combining fermented cabbage with pork.','Northeastern pickled cabbage, pork, glass noodles and aromatics.','Serve hot in a shared pot, often with rice or dumplings.','Fermented cabbage is a familiar winter staple in Northeast China.']
+]}
+
+];
+const dishImages=['photo-1563245372-f21724e3856d','photo-1544025162-d76694265947','photo-1515003197210-e0cd7184f8b5','photo-1555126634-323283e090fa','photo-1529042410759-befb1204b468'];
+
+let selected=null;
+const visited=new Set();
+let mapScale=1, mapX=0, mapY=0;
+const $=id=>document.getElementById(id);
+const imageUrl=(id,w=900)=>`https://images.unsplash.com/${id}?auto=format&fit=crop&w=${w}&q=85`;
+function toast(message){
+  const el=$('toast'); el.textContent=message; el.classList.add('show');
+  clearTimeout(toast.timer); toast.timer=setTimeout(()=>el.classList.remove('show'),2400);
+}
+function mapPoint(lon,lat){
+  // Equirectangular placement within the China-focused map viewport.
+  return {x:90+(lon-73)/(135-73)*700, y:75+(53-lat)/(53-18)*470};
+}
+
+function renderRegionPicker(){
+  const picker=$('regionPicker');
+  if(!picker)return;
+  picker.innerHTML='';
+  regions.forEach(r=>{
+    const button=document.createElement('button');
+    button.type='button';button.className='region-choice';button.dataset.region=r.id;
+    button.innerHTML=`<span>${r.name}</span><small>${r.cn}</small>`;
+    button.setAttribute('aria-label',`Explore ${r.name}, ${r.city}`);
+    button.addEventListener('click',()=>{
+      selectRegion(r.id);
+      document.querySelectorAll('.region-choice').forEach(b=>b.classList.toggle('active',b.dataset.region===r.id));
+      openRegion();
+    });
+    picker.appendChild(button);
+  });
+}
+
+function renderMap(){
+  const svg=$('chinaMap');
+  const ns='http://www.w3.org/2000/svg';
+  const make=(tag,attrs,parent=svg)=>{
+    const el=document.createElementNS(ns,tag);
+    Object.entries(attrs||{}).forEach(([k,v])=>el.setAttribute(k,v));
+    parent.appendChild(el); return el;
+  };
+  svg.innerHTML='';
+  svg.setAttribute('viewBox','0 0 900 620');
+  const defs=make('defs',{});
+  const glow=make('filter',{id:'pinGlow',x:'-100%',y:'-100%',width:'300%',height:'300%'},defs);
+  make('feGaussianBlur',{stdDeviation:'3',result:'blur'},glow);
+  const group=make('g',{id:'mapTransform'});
+  // A recognizable, China-focused silhouette with internal regional divisions.
+  // The SVG is embedded in the page; map controls and pins never depend on network requests.
+  const outline='M180 105 L235 88 L278 103 L316 82 L365 96 L395 124 L448 118 L477 142 L528 132 L555 156 L601 153 L631 183 L674 185 L695 220 L733 231 L747 267 L725 292 L741 323 L710 345 L702 379 L670 397 L651 431 L615 444 L589 477 L550 480 L526 510 L484 501 L453 524 L414 509 L382 524 L353 498 L317 503 L294 475 L260 467 L251 435 L222 422 L219 388 L193 365 L205 334 L180 309 L197 278 L177 249 L196 218 L181 184 L203 155 Z';
+  make('path',{d:outline,fill:'#241719',stroke:'#c5a46d','stroke-width':'2.2','stroke-linejoin':'round',filter:'drop-shadow(0 0 18px #8b252b55)'},group);
+  const borders=[
+    'M235 90 Q250 160 220 225 T205 335','M316 83 Q330 155 300 215 T294 475',
+    'M395 124 Q390 195 420 255 T414 509','M477 142 Q460 210 485 270 T453 524',
+    'M555 156 Q530 220 565 280 T526 510','M631 183 Q600 245 630 310 T589 477',
+    'M203 218 Q330 230 450 220 T725 267','M190 309 Q330 330 470 320 T741 323',
+    'M219 388 Q350 395 490 390 T670 397','M260 467 Q360 455 470 465 T615 444'
+  ];
+  borders.forEach(d=>make('path',{d,fill:'none',stroke:'#8f6e52','stroke-width':'1','stroke-opacity':'.62','stroke-dasharray':'3 3'},group));
+  // Soft geographic texture and a few subtle rivers.
+  make('path',{d:'M250 180 Q360 210 420 270 T600 340',fill:'none',stroke:'#9a5550','stroke-width':'2','stroke-opacity':'.16'},group);
+  make('path',{d:'M310 390 Q420 350 500 380 T650 420',fill:'none',stroke:'#9a5550','stroke-width':'2','stroke-opacity':'.16'},group);
+  const label=make('text',{x:'450',y:'570','text-anchor':'middle',fill:'#76675c','font-size':'10','letter-spacing':'4'},group);
+  label.textContent='CHINA · REGIONAL CULINARY ATLAS';
+  regions.forEach((r,index)=>{
+    const pt=mapPoint(r.lon,r.lat);
+    const pin=make('g',{class:'map-pin','data-region':r.id,transform:`translate(${pt.x} ${pt.y})`,tabindex:'0',role:'button','aria-label':`${r.city}, ${r.name}: ${r.dish}`},group);
+    make('circle',{class:'pulse',cx:'0',cy:'0',r:'8'},pin);
+    make('circle',{class:'core',cx:'0',cy:'0',r:'5'},pin);
+    const text=make('text',{x:'10',y:index%2===0?'-10':'19'},pin); text.textContent=r.city;
+    const choose=()=>{selectRegion(r.id);document.querySelectorAll('.region-choice').forEach(b=>b.classList.toggle('active',b.dataset.region===r.id));zoomTo(r);openRegion();};
+    pin.addEventListener('mouseenter',()=>selectRegion(r.id));
+    pin.addEventListener('focus',()=>selectRegion(r.id));
+    pin.addEventListener('click',choose);
+    pin.addEventListener('keydown',e=>{if(e.key==='Enter'||e.key===' '){e.preventDefault();choose();}});
+  });
+  // Click the map silhouette as well: it gives a useful hint instead of appearing broken.
+  const hit=make('path',{d:outline,fill:'transparent',stroke:'none',style:'pointer-events:all;cursor:default'},group);
+  group.insertBefore(hit,group.children[1]);
+}
+function applyMapTransform(){
+  const g=$('mapTransform'); if(g)g.setAttribute('transform',`translate(${mapX} ${mapY}) translate(450 310) scale(${mapScale}) translate(-450 -310)`);
+}
+function zoomTo(region){
+  const pt=mapPoint(region.lon,region.lat);
+  mapScale=1.65; mapX=(450-pt.x)*.65; mapY=(310-pt.y)*.65;
+  const g=$('mapTransform');
+  if(g){
+    g.style.transition='transform .85s cubic-bezier(.2,.8,.2,1)';
+    g.style.transformOrigin='center';
+    g.setAttribute('transform',`translate(${mapX} ${mapY}) translate(450 310) scale(${mapScale}) translate(-450 -310)`);
+  }
+}
+function resetMap(){
+  mapScale=1;mapX=0;mapY=0;
+  const g=$('mapTransform');if(g){g.style.transition='transform .65s ease';g.setAttribute('transform','translate(0 0)');}
+}
+function selectRegion(id){
+  selected=regions.find(r=>r.id===id);
+  if(!selected)return;
+  visited.add(id);
+  $('sideCity').textContent=selected.city;
+  $('sideRegion').textContent=selected.name+' · '+selected.cn;
+  $('sideDesc').textContent=selected.style;
+  $('sideDish').textContent=selected.dish;
+  $('sideDishCn').textContent=selected.dishCn;
+  $('sideImage').style.backgroundImage=`url('${imageUrl(selected.image,700)}')`;
+  $('progressBar').style.width=(visited.size/regions.length*100)+'%';
+  $('progressText').textContent=`${visited.size} of ${regions.length} destinations explored`;
+  document.querySelectorAll('.region-choice').forEach(button=>button.classList.toggle('active',button.dataset.region===id));
+  document.querySelectorAll('.map-pin').forEach(pin=>{
+    const active=pin.dataset.region===id;
+    pin.classList.toggle('active',active);
+    pin.style.opacity=active?'1':'.66';
+  });
+}
+function openRegion(){
+  if(!selected){toast('Choose one of the glowing city markers first.');return;}
+  const r=selected;
+  $('explorePanel').classList.add('open');
+  $('regionHero').style.backgroundImage=`linear-gradient(90deg,#090909bb,transparent),url('${imageUrl(r.hero,1500)}')`;
+  $('regionEyebrow').textContent=`Regional table · ${String(regions.indexOf(r)+1).padStart(2,'0')} / ${regions.length}`;
+  $('regionTitle').textContent=r.name;
+  $('regionCn').textContent=r.cn;
+  $('regionIntro').textContent=r.desc;
+  $('dishSearch').value='';
+  renderDishes(r.dishes);
+  $('regionSection').scrollIntoView({behavior:'smooth',block:'start'});
+}
+function renderDishes(dishes){
+  const grid=$('dishGrid');grid.innerHTML='';
+  if(!dishes.length){
+    const empty=document.createElement('p');empty.className='empty-result';
+    empty.textContent='No dishes match that search. Try another name or Chinese character.';
+    grid.appendChild(empty);$('dishDetail').classList.remove('open');return;
+  }
+  dishes.forEach((dish,index)=>{
+    const card=document.createElement('article');card.className='dish-card';card.tabIndex=0;
+    card.setAttribute('role','button');card.setAttribute('aria-label',`Read about ${dish[0]}`);
+    card.innerHTML=`<div class="dish-photo" style="background-image:url('${imageUrl(dishImages[(index+regions.indexOf(selected))%dishImages.length],650)}')"></div><div class="dish-card-content"><h4>${dish[0]}</h4><div class="cn">${dish[1]}</div><p>${dish[2]}</p></div>`;
+    card.addEventListener('click',()=>showDish(dish));
+    card.addEventListener('keydown',e=>{if(e.key==='Enter'||e.key===' '){e.preventDefault();showDish(dish);}});
+    grid.appendChild(card);
+  });
+}
+function showDish(dish){
+  const detail=$('dishDetail');
+  detail.innerHTML=`<div><div class="eyebrow">The dish · ${selected.name}</div><h3>${dish[0]}</h3><div style="color:var(--gold);font-family:var(--serif);font-size:22px">${dish[1]}</div><p>${dish[2]}</p><h5>Ingredients & preparation</h5><p>${dish[3]}</p></div><div><h5>How to enjoy it</h5><p>${dish[4]}</p><h5>History & cultural note</h5><p>${dish[5]}</p><h5>At the table</h5><p>Recipes and serving customs vary by household and restaurant. Ask your host about local accompaniments, share dishes where appropriate, and enjoy the meal at its own pace.</p></div>`;
+  detail.classList.add('open');
+  detail.scrollIntoView({behavior:'smooth',block:'nearest'});
+}
+function wireControls(){
+  $('exploreBtn').addEventListener('click',()=>$('explore').scrollIntoView({behavior:'smooth'}));
+  $('sideExplore').addEventListener('click',openRegion);
+  $('backMap').addEventListener('click',()=>{$('explore').scrollIntoView({behavior:'smooth'});});
+  $('resetMap').addEventListener('click',resetMap);
+  $('zoomIn').addEventListener('click',()=>{mapScale=Math.min(3,mapScale*1.25);applyMapTransform();});
+  $('zoomOut').addEventListener('click',()=>{mapScale=Math.max(1,mapScale/1.25);if(mapScale===1){mapX=0;mapY=0;}applyMapTransform();});
+  $('dishSearch').addEventListener('input',e=>{
+    if(!selected)return;
+    const query=e.target.value.trim().toLocaleLowerCase();
+    renderDishes(selected.dishes.filter(d=>d.join(' ').toLocaleLowerCase().includes(query)));
+  });
+  $('menuBtn').addEventListener('click',()=>$('navlinks').classList.toggle('show'));
+  document.querySelectorAll('.navlinks a').forEach(a=>a.addEventListener('click',()=>$('navlinks').classList.remove('show')));
+  $('closeModal').addEventListener('click',()=>$('modal').classList.remove('open'));
+  $('modalOkay').addEventListener('click',()=>$('modal').classList.remove('open'));
+}
+renderRegionPicker();
+renderMap();
+wireControls();
+if('IntersectionObserver' in window){
+ const reveal=new IntersectionObserver(entries=>entries.forEach(entry=>{
+  if(entry.isIntersecting){entry.target.style.animation='rise .8s ease both';reveal.unobserve(entry.target);}
+ }),{threshold:.12});
+ document.querySelectorAll('.culture-card,.etiquette').forEach(el=>reveal.observe(el));
+}
+</script>
+</body></html>
